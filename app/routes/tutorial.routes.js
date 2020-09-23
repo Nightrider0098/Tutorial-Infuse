@@ -39,8 +39,11 @@ Router.get('/', (req, res) => {
 				$regex: '.*' + title + '.*', $options: 'i'
 			}
 		}, 'title description published id', (err, data) => {
-			if (err) { console.log("err", err); }
-			else { res.json(data) }
+			if (err) {
+				console.log("err", err);
+				res.json({ 'type': 'title search', "resource": 'failed' })
+			}
+			else { res.json({ 'type': "title search", "resource": data }) }
 		})
 	}
 })
